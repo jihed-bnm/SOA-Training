@@ -1,5 +1,6 @@
 package webservices;
 import entities.Module;
+import entities.UniteEnseignement;
 import metiers.ModuleBusiness;
 import metiers.UniteEnseignementBusiness;
 
@@ -22,4 +23,18 @@ public class ModuleBusinessRestApi {
                 .entity(helper.getAllModules())
                 .build();
     }
+    // add a new UE
+    @POST
+    @Path("/new")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response createModule(Module module) {
+        if (helper.addModule(module)) {
+            return Response.status(201).entity("ok").build();
+        } else {
+            return Response.status(400).entity("error").build();
+        }
+    }
+
+
 }
