@@ -54,6 +54,15 @@ public class ModuleBusinessRestApi {
                 .entity(helper.getModulesByType(type))
                 .build();
     }
-
-
+    @DELETE
+    @Path("/delete/{matricule}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response deleteModule(@PathParam("matricule") String matricule) {
+        if (helper.deleteModule(matricule)) {
+            return Response.status(200).entity("ok").build();
+        } else {
+                return Response.status(400).entity("error").build();
+        }
+    }
 }
+
