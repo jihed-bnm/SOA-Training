@@ -35,6 +35,25 @@ public class ModuleBusinessRestApi {
             return Response.status(400).entity("error").build();
         }
     }
+    @GET
+    @Path("/{matricule}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getModuleByMatricule(@PathParam("matricule") String matricule) {
+        return Response
+                .status(200)
+                .entity(helper.getModuleByMatricule(matricule))
+                .build();
+    }
+
+    @GET
+    @Path("/type")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getModulesByType(@QueryParam("type") Module.TypeModule type) {
+        return Response
+                .status(200)
+                .entity(helper.getModulesByType(type))
+                .build();
+    }
 
 
 }
